@@ -25,7 +25,7 @@ func (s *StripPrefix) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 
 		prefix = strings.TrimSuffix(origPrefix, "/") + "/"
-		if p := strings.TrimPrefix(r.URL.Path, prefix); len(p) < len(r.URL.Path) {
+		if p := strings.TrimPrefix(r.URL.Path, prefix); len(p) < len(r.URL.Path) || origPrefix == "/" {
 			r.URL.Path = "/" + strings.TrimPrefix(p, "/")
 			s.serveRequest(w, r, origPrefix)
 			return

@@ -31,6 +31,13 @@ func TestStripPrefix(t *testing.T) {
 			expectedPath:       "/",
 		},
 		{
+			desc:               "wildcard (.*) requests with index.html",
+			prefixes:           []string{"/"},
+			path:               "/index.html",
+			expectedStatusCode: http.StatusOK,
+			expectedPath:       "/index.html",
+		},
+		{
 			desc:               "prefix and path matching",
 			prefixes:           []string{"/stat"},
 			path:               "/stat",
