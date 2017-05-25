@@ -18,8 +18,7 @@ type StripPrefix struct {
 func (s *StripPrefix) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	for _, prefix := range s.Prefixes {
 		origPrefix := strings.TrimSpace(prefix)
-		if origPrefix == r.URL.Path {
-			r.URL.Path = "/"
+		if origPrefix == r.URL.Path || origPrefix == "/" {
 			s.serveRequest(w, r, origPrefix)
 			return
 		}
